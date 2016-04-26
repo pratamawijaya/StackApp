@@ -7,12 +7,11 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-@Singleton
-@Component(modules = {
-        ApiModule.class
-})
-public interface ApiComponent {
+@Singleton @Component(modules = {
+    ApiModule.class
+}) public interface ApiComponent {
 
-    void inject(HomeActivity activity);
-    void inject(DetailActivity activity);
+  void inject(HomeActivity activity);
+
+  void inject(DetailActivity activity);
 }

@@ -15,21 +15,17 @@ import retrofit.converter.GsonConverter;
 
 import static retrofit.RestAdapter.LogLevel;
 
-@Module
-public class ApiModule {
+@Module public class ApiModule {
 
-    @Provides RestAdapter.Builder provideRestAdapterBuilder() {
-        Gson gson = new GsonBuilder()
-                .setExclusionStrategies(new RealmExclusionStrategy())
-                .create();
+  @Provides RestAdapter.Builder provideRestAdapterBuilder() {
+    Gson gson = new GsonBuilder().setExclusionStrategies(new RealmExclusionStrategy()).create();
 
-        return new RestAdapter.Builder()
-                .setConverter(new GsonConverter(gson))
-                .setLogLevel(BuildConfig.DEBUG ? LogLevel.HEADERS_AND_ARGS : LogLevel.NONE)
-                .setErrorHandler(new LoggingErrorHandler());
-    }
+    return new RestAdapter.Builder().setConverter(new GsonConverter(gson))
+        .setLogLevel(BuildConfig.DEBUG ? LogLevel.HEADERS_AND_ARGS : LogLevel.NONE)
+        .setErrorHandler(new LoggingErrorHandler());
+  }
 
-    @Provides @Singleton StackOverflowApi provideStackOverflowApi(RestAdapter.Builder builder) {
-        return builder.setEndpoint(StackOverflowApi.BASE_URL).build().create(StackOverflowApi.class);
-    }
+  @Provides @Singleton StackOverflowApi provideStackOverflowApi(RestAdapter.Builder builder) {
+    return builder.setEndpoint(StackOverflowApi.BASE_URL).build().create(StackOverflowApi.class);
+  }
 }

@@ -1,94 +1,84 @@
 package com.anotherdev.stackapp.api.stackexchange;
 
 import com.google.gson.annotations.SerializedName;
-
-import org.parceler.Parcel;
-
-import io.realm.AnswerRealmProxy;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-@Parcel(
-        implementations = { AnswerRealmProxy.class },
-        value = Parcel.Serialization.BEAN,
-        analyze = { Answer.class }
-)
 public class Answer extends RealmObject {
 
-    @SerializedName("owner") private Owner owner;
-    @SerializedName("score") private int score;
-    @SerializedName("last_activity_date") private long lastActivityDate;
-    @SerializedName("creation_date") private long creationDate;
-    @SerializedName("body") private String body;
+  @SerializedName("answer_id") @PrimaryKey private String answerId;
+  @SerializedName("owner") private Owner owner;
+  @SerializedName("score") private int score;
+  @SerializedName("last_activity_date") private long lastActivityDate;
+  @SerializedName("creation_date") private long creationDate;
+  @SerializedName("body") private String body;
+  @SerializedName("is_accepted") private boolean isAccepted;
+  @SerializedName("question_id") private String questionId;
 
-    @SerializedName("answer_id") @PrimaryKey private String answerId;
-    @SerializedName("is_accepted") private boolean isAccepted;
-    @SerializedName("question_id") private String questionId;
+  public Answer() {
+  }
 
+  public Owner getOwner() {
+    return owner;
+  }
 
-    public Answer() {}
+  public void setOwner(Owner o) {
+    owner = o;
+  }
 
-    public Owner getOwner() {
-        return owner;
-    }
+  public int getScore() {
+    return score;
+  }
 
-    public void setOwner(Owner o) {
-        owner = o;
-    }
+  public void setScore(int s) {
+    score = s;
+  }
 
-    public int getScore() {
-        return score;
-    }
+  public long getLastActivityDate() {
+    return lastActivityDate;
+  }
 
-    public void setScore(int s) {
-        score = s;
-    }
+  public void setLastActivityDate(long date) {
+    lastActivityDate = date;
+  }
 
-    public long getLastActivityDate() {
-        return lastActivityDate;
-    }
+  public long getCreationDate() {
+    return creationDate;
+  }
 
-    public void setLastActivityDate(long date) {
-        lastActivityDate = date;
-    }
+  public void setCreationDate(long date) {
+    creationDate = date;
+  }
 
-    public long getCreationDate() {
-        return creationDate;
-    }
+  public String getBody() {
+    return body;
+  }
 
-    public void setCreationDate(long date) {
-        creationDate = date;
-    }
+  public void setBody(String body) {
+    this.body = body;
+  }
 
-    public String getBody() {
-        return body;
-    }
+  public String getAnswerId() {
+    return answerId;
+  }
 
-    public void setBody(String body) {
-        this.body = body;
-    }
+  public void setAnswerId(String id) {
+    answerId = id;
+  }
 
-    public String getAnswerId() {
-        return answerId;
-    }
+  public boolean isAccepted() {
+    return isAccepted;
+  }
 
-    public void setAnswerId(String id) {
-        answerId = id;
-    }
+  public void setIsAccepted(boolean accepted) {
+    isAccepted = accepted;
+  }
 
-    public boolean isAccepted() {
-        return isAccepted;
-    }
+  public String getQuestionId() {
+    return questionId;
+  }
 
-    public void setIsAccepted(boolean accepted) {
-        isAccepted = accepted;
-    }
-
-    public String getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestionId(String id) {
-        questionId = id;
-    }
+  public void setQuestionId(String id) {
+    questionId = id;
+  }
 }

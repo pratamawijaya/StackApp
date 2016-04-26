@@ -12,26 +12,25 @@ import io.realm.RealmConfiguration;
 
 public class StackApp extends Application {
 
-    private final ApiComponent mApiComponent = DaggerApiComponent.create();
+  private final ApiComponent mApiComponent = DaggerApiComponent.create();
 
+  @Override public void onCreate() {
+    super.onCreate();
+    initFabric();
+    initRealm();
+  }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        initFabric();
-        initRealm();
-    }
+  private void initFabric() {
+    Fabric.with(this, new Crashlytics());
+  }
 
-    private void initFabric() {
-        Fabric.with(this, new Crashlytics());
-    }
+  private void initRealm() {
+    RealmConfiguration config =
+        new RealmConfiguration.Builder(this).deleteRealmIfMigrationNeeded().build();
+    Realm.setDefaultConfiguration(config);
+  }
 
-    private void initRealm() {
-        RealmConfiguration config = new RealmConfiguration.Builder(this).build();
-        Realm.setDefaultConfiguration(config);
-    }
-
-    public ApiComponent getApiComponent() {
-        return mApiComponent;
-    }
+  public ApiComponent getApiComponent() {
+    return mApiComponent;
+  }
 }

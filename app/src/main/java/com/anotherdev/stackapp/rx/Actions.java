@@ -8,15 +8,14 @@ import rx.functions.Action1;
 
 public class Actions {
 
-    public static Action1<Throwable> logError(@NonNull final String tag) {
-        return new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                Logger.e(tag, "", throwable);
-            }
-        };
-    }
+  public static Action1<Throwable> logError(@NonNull final String tag) {
+    return new Action1<Throwable>() {
+      @Override public void call(Throwable throwable) {
+        Logger.e(tag, "", throwable);
+      }
+    };
+  }
 
-
-    private Actions() {}
+  private Actions() {
+  }
 }

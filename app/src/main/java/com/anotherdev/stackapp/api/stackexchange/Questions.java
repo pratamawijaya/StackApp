@@ -8,22 +8,21 @@ import io.realm.annotations.PrimaryKey;
 
 public class Questions extends RealmObject {
 
-    @PrimaryKey private final String id = Questions.class.getName();
-    @SerializedName("items") private RealmList<Question> questions = new RealmList<>();
+  @PrimaryKey private String id = Questions.class.getName();
+  @SerializedName("items") private RealmList<Question> questions = new RealmList<>();
 
+  public String getId() {
+    return id;
+  }
 
-    public String getId() {
-        return id;
-    }
+  public void setId(String id) {
+  }
 
-    public void setId(String id) {
-    }
+  public RealmList<Question> getQuestions() {
+    return questions;
+  }
 
-    public RealmList<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(RealmList<Question> q) {
-        questions = q;
-    }
+  public void setQuestions(RealmList<Question> q) {
+    questions = q;
+  }
 }

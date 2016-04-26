@@ -7,12 +7,10 @@ import retrofit.RetrofitError;
 
 public class LoggingErrorHandler implements ErrorHandler {
 
-    private static final String TAG = LoggingErrorHandler.class.getSimpleName();
+  private static final String TAG = LoggingErrorHandler.class.getSimpleName();
 
-
-    @Override
-    public Throwable handleError(RetrofitError cause) {
-        Logger.e(TAG, "", cause);
-        return cause;
-    }
+  @Override public Throwable handleError(RetrofitError cause) {
+    Logger.e(TAG, "", cause);
+    return cause;
+  }
 }

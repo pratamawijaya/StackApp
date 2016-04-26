@@ -7,16 +7,14 @@ import rx.Observable;
 
 public interface StackOverflowApi {
 
-    String BASE_URL = "https://api.stackexchange.com/2.2";
+  String BASE_URL = "https://api.stackexchange.com/2.2";
 
+  @GET("/questions?order=desc&sort=activity&site=stackoverflow&filter=withbody&pagesize=100")
+  Observable<Questions> questions();
 
-    @GET("/questions?order=desc&sort=activity&site=stackoverflow&filter=withbody&pagesize=100")
-    Observable<Questions> questions();
+  @GET("/search?order=desc&sort=activity&site=stackoverflow&filter=withbody&pagesize=100")
+  Observable<Questions> search(@Query("intitle") String text);
 
-    @GET("/search?order=desc&sort=activity&site=stackoverflow&filter=withbody&pagesize=100")
-    Observable<Questions> search(@Query("intitle") String text);
-
-
-    @GET("/questions/{question_id}/answers?order=desc&sort=votes&site=stackoverflow&filter=withbody")
-    Observable<Answers> answers(@Path("question_id") String questionId);
+  @GET("/questions/{question_id}/answers?order=desc&sort=votes&site=stackoverflow&filter=withbody")
+  Observable<Answers> answers(@Path("question_id") String questionId);
 }
